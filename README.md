@@ -28,6 +28,6 @@
   <img style="border-radius: 50%; width: 100px; height: auto;" src="https://avatars.githubusercontent.com/u/96632268?v=4">
 </a><br><br>
 <a href="https://www.github.com/GuilhermeSCLima"><img src="https://img.shields.io/badge/-Github-lightgrey?style=for-the-badge&logo=github"></a>
-<a href="#"><img src="https://img.shields.io/badge/-Instagram-lightgrey?style=for-the-badge&logo=instagram"></a>
-<a href="#"><img src="https://img.shields.io/badge/-Twitter-lightgrey?style=for-the-badge&logo=twitter"></a>
-<a href="#"><img src="https://img.shields.io/badge/-Linkedin-lightgrey?style=for-the-badge&logo=linkedin"></a>
+<a href="https://www.instagram.com/guilhermesclima/"><img src="https://img.shields.io/badge/-Instagram-lightgrey?style=for-the-badge&logo=instagram"></a>
+<a href="https://twitter.com/GuilhermeSCLima"><img src="https://img.shields.io/badge/-Twitter-lightgrey?style=for-the-badge&logo=twitter"></a>
+<a href="https://www.linkedin.com/in/joão-guilherme-dos-santos-cardoso-lima-44a5881a4/"><img src="https://img.shields.io/badge/-Linkedin-lightgrey?style=for-the-badge&logo=linkedin"></a>
