@@ -1,44 +1,71 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, Tray, Menu }  = require('electron');
+const data = require('./data')
+const templateGenerator = require('./template')
 
-app.on("ready", () => {
-    console.log("App online")
-    let mainWindow = new BrowserWindow({
+let tray = null;
+let mainWindow = null;
+app.on('ready', () => {
+    console.log('Aplicacão iniciada');
+    mainWindow = new BrowserWindow({
         width: 600,
-        heigth: 300
-    })
+        height: 400,
+    });
+    tray = new Tray(__dirname + '/app/img/icon-tray.png');
+    let template = templateGenerator.geraTrayTemplate(mainWindow)
+    let trayMenu = Menu.buildFromTemplate(template);
+    tray.setContextMenu(trayMenu);
 
-    mainWindow.loadURL(`file://${__dirname}/app/index.html`)
+    let templateMenu = templateGenerator.geraMenuPrincipalTemplate(app)
+    let menuPrincipal = Menu.buildFromTemplate(templateMenu)
+    Menu.setApplicationMenu(menuPrincipal)
+
+    mainWindow.openDevTools()
+
+    mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+
 });
 
-app.on("window-all-closed", () => {
-  app.quit();
-})
+app.on('window-all-closed', () => {
+    app.quit();
+});
 
 let sobreWindow = null;
+ipcMain.on('abrir-janela-sobre', () => {
+    if(sobreWindow == null){
+        sobreWindow = new BrowserWindow({
+            width: 300,
+            height: 340,
+            alwaysOnTop: true,
+            frame: false
+        });
+        sobreWindow.on('closed', () => {
+            sobreWindow = null;
+        })
+    }
+    sobreWindow.loadURL(`file://${__dirname}/app/sobre.html`);
 
-ipcMain.on("abrirJanelaSobre", () => {
+});
 
-  if (sobreWindow == null) {
-    sobreWindow = new BrowserWindow({
-      heigth: 200,
-      width: 400,
-      alwaysOnTop: true,
-      frame: false,
-      center: true,
-    })
+ipcMain.on('fechar-janela-sobre', () => {
+    sobreWindow.close();
+});
 
-    sobreWindow.on("closed", () => {
-      sobreWindow = null
-    })
-  }
+ipcMain.on('curso-parado', (event,curso, tempoEstudado) => {
+    console.log(`O curso ${curso} foi estudado por ${tempoEstudado}`);
+    data.salvaDados(curso, tempoEstudado);
+});
 
-  sobreWindow.loadURL(`file://${__dirname}/app/sobre.html`)
-})
+ipcMain.on('curso-adicionado', (event, novoCurso) => {
+    let novoTemplate = templateGenerator.adicionaCursoNoTray(novoCurso, mainWindow );
+    let novoTrayMenu = Menu.buildFromTemplate(novoTemplate);
+    tray.setContextMenu(novoTrayMenu);
+});
 
-ipcMain.on("fecharJanelaSobre", function () {
-  sobreWindow.close()
-})
 
-ipcMain.on("cursoParado", (event, curso, tempoEstudado) => {
-  console.log(`O curso ${curso} foi estudado por ${tempoEstudado}`)
-})
+
+
+
+
+
+
+//

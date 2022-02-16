@@ -1,8 +1,14 @@
-.container {
-  text-align: center;
+.container{
+    text-align: center;
 }
+
 .container p {
-  margin: 5px 0;
+    margin: 5px 0;
+}
+
+.container img{
+    width: 50px;
+    margin-top: 10px;
 }
 .fecharButton {
   border: 1px solid #000;
@@ -15,4 +21,7 @@
 .text {
   display: inline;
   color: #fff;
+}
+#linkGithub {
+  color: #5264AE;
 }

@@ -1,18 +1,18 @@
-const { ipcRenderer, shell } = require("electron")
-const process = require("process")
+const { ipcRenderer, shell } = require('electron');
+const process = require('process');
 
-let linkFechar = document.querySelector("#linkFechar")
-let linkGithub = document.querySelector("#linkGithub")
-let electronVersion = document.querySelector("#electronVersion")
+let linkFechar = document.querySelector("#link-fechar");
+let linkGithub = document.querySelector("#linkGithub");
+let versaoElectron = document.querySelector('#versao-electron');
 
-window.onload = function () {
-  electronVersion.textContent = process.versions.electron
+window.onload = function(){
+    versaoElectron.textContent = process.versions.electron;
 }
 
-linkFechar.addEventListener("click", function () {
-  ipcRenderer.send("fecharJanelaSobre")
+linkFechar.addEventListener('click', function () {
+    ipcRenderer.send('fechar-janela-sobre');
 })
 
-linkGithub.addEventListener("click", function () {
-  shell.openExternal("https://www.github.com/GuilhermeSCLima")
+linkTwitter.addEventListener('click', function () {
+    shell.openExternal("https://www.github.com/guilhermesclima");
 })
